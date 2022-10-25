@@ -1,60 +1,39 @@
-#define buton 7
-#define butonoff 8
-#define led 6
+int button1 = 8;
+int button2 = 7;
 
-void setup() 
+void setup()
 {
-  pinMode(buton, INPUT);
-  pinMode(butonoff, INPUT);
-  pinMode(led, OUTPUT);
-  Serial.begin(115200);
-  Serial.println("Start!");
-  basla();
-}
-
-void loop() 
-{ 
-  Rising_Edge();
-  delay(10);
-  Falling_Edge();
-  delay(10);
-}
-
-
-void Rising_Edge()
-{
-  bool buttonState = digitalRead(buton);
-
-    if(digitalRead(buton) != buttonState)
-    {
-      digitalWrite(led,1);
-    }
-  return 0;
-}
-
-void Falling_Edge()
-{
-  bool buttonState = digitalRead(butonoff);
-
-    if(digitalRead(buton) != buttonState)
-    {
-      digitalWrite(led,0);
-    }
-  return 0;
-}
-
-
-void basla()
-{
-  for(int i=0; i<3; i++)
-  {
-    digitalWrite(led,1);
-    delay(100);
-    digitalWrite(led,0);
-    delay(100);
-    Serial.println("blink!");
-    Serial.println(i);
-  }
-  return 0;
-}
+  Serial.begin(9600);
   
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+  pinMode(13,OUTPUT);
+}
+
+void loop()
+{
+  bool button1State = digitalRead(button1);
+  bool button2State = digitalRead(button2);
+  
+  Serial.print("Button1 -> ");
+  Serial.println(button1State);
+  
+  Serial.print("Button2 -> ");
+  Serial.println(button2State);
+  
+  Serial.println("----------------");
+  
+  if(digitalRead(button1) == 1 && button1State == false)
+  {
+    Serial.println("Detecded rising edge at button1!");
+	digitalWrite(13,HIGH);
+  }
+  
+  if(digitalRead(button2) == 0 && button2State == true)
+  {
+    Serial.println("Detecded falling edge at button2!");
+	digitalWrite(13,LOW);
+  }
+  
+  
+}
