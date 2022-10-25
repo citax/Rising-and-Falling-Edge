@@ -1,8 +1,6 @@
 #define buton 7
 #define butonoff 8
 #define led 6
-int x,y,z;
-
 
 void setup() 
 {
@@ -16,15 +14,35 @@ void setup()
 
 void loop() 
 { 
-  x = 0;
-  y = digitalRead(buton);
-  z = digitalRead(butonoff);
-  Serial.println(y);
-  if (y==1)
-  {
-    digitalWrite(led,1);        
-  }
+  Rising_Edge();
+  delay(10);
+  Falling_Edge();
+  delay(10);
 }
+
+
+int Rising_Edge()
+{
+  bool buttonState = digitalRead(buton);
+
+    if(digitalRead(buton) != buttonState)
+    {
+      digitalWrite(led,1);
+    }
+  return 0;
+}
+
+int Falling_Edge()
+{
+  bool buttonState = digitalRead(butonoff);
+
+    if(digitalRead(buton) != buttonState)
+    {
+      digitalWrite(led,0);
+    }
+  return 0;
+}
+
 
 void basla()
 {
