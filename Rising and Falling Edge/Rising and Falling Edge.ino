@@ -21,7 +21,7 @@ void loop()
 }
 
 
-int Rising_Edge()
+void Rising_Edge()
 {
   bool buttonState = digitalRead(buton);
 
@@ -32,7 +32,7 @@ int Rising_Edge()
   return 0;
 }
 
-int Falling_Edge()
+void Falling_Edge()
 {
   bool buttonState = digitalRead(butonoff);
 
